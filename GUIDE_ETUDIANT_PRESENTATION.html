@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Guide Complet de Présentation - Lab Agentic Driving Coach</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+    @bottom-right {
+      content: counter(page) "/" counter(pages);
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #24292e;
+    line-height: 1.55;
+    font-size: 10.5pt;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .header-box {
+    border-bottom: 3px solid #1a56db;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+  }
+  .title {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #1a56db;
+    margin: 0 0 6px 0;
+  }
+  .subtitle {
+    font-size: 12pt;
+    color: #4b5563;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+  }
+  .meta-grid {
+    display: flex;
+    justify-content: space-between;
+    background: #f3f4f6;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 9pt;
+    color: #374151;
+  }
+  h2 {
+    color: #1e3a8a;
+    font-size: 14pt;
+    border-left: 4px solid #1a56db;
+    padding-left: 10px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+  h3 {
+    color: #1f2937;
+    font-size: 11.5pt;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+  p {
+    margin: 6px 0;
+    text-align: justify;
+  }
+  ul, ol {
+    margin: 6px 0;
+    padding-left: 22px;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  .callout {
+    background-color: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 10px 14px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout-title {
+    font-weight: 700;
+    color: #1d4ed8;
+    margin-bottom: 4px;
+  }
+  .callout-warning {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+  }
+  .callout-warning .callout-title {
+    color: #b91c1c;
+  }
+  .callout-success {
+    background-color: #f0fdf4;
+    border-left: 4px solid #22c55e;
+  }
+  .callout-success .callout-title {
+    color: #15803d;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9pt;
+  }
+  th, td {
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background-color: #f9fafb;
+  }
+  code {
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #fff;
+  }
+  .badge-blue { background-color: #2563eb; }
+  .badge-green { background-color: #16a34a; }
+  .badge-purple { background-color: #9333ea; }
+  .page-break {
+    page-break-before: auto;
+  }
+  .qa-box, .callout, table, h2, h3 {
+    page-break-inside: avoid;
+  }
+  .qa-box {
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .qa-q {
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  .qa-a {
+    color: #374151;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-box">
+  <div class="title">Lab Agentic Driving Coach — De A à Z</div>
+  <div class="subtitle">Guide technique complet et support de présentation orale pour l'enseignant</div>
+  <div class="meta-grid">
+    <div><strong>Cours :</strong> CSE 494 / CSE 598 (ISCPS)</div>
+    <div><strong>Élève :</strong> Binôme / Groupe 01</div>
+    <div><strong>Sujet :</strong> Systèmes Cyber-Physiques & LLM Temps Réel</div>
+    <div><strong>Framework :</strong> Xronos Python SDK 0.13.1</div>
+  </div>
+</div>
+
+<h2>1. Le Projet en 30 secondes : ce qu'on cherche à prouver</h2>
+<p>
+  Ce lab étudie l'intégration d'un <strong>modèle d'intelligence artificielle (LLM)</strong> dans la boucle de contrôle critique d'un véhicule autonome approchant d'un panneau <em>STOP</em>.
+</p>
+<p>
+  <strong>Le problème fondamental :</strong> Un modèle de langage comme <em>Llama-3.2</em> met du temps à réfléchir (latence variable de 300 ms à plus de 1,5 s). Or, une voiture qui roule à 10 m/s (36 km/h) parcourt 1 mètre tous les 100 ms. Si le système attend passivement la réponse du LLM pour décider de freiner, la voiture s'écrase contre l'obstacle.
+</p>
+<p>
+  <strong>La solution démontrée :</strong> L'utilisation d'une architecture orientée <strong>réacteurs Xronos</strong> avec une <strong>course d'événements (race)</strong> et une <strong>politique de secours déterministe (fallback)</strong>. Si le LLM ne répond pas avant une échéance stricte (deadline), le système l'ignore instantanément et applique les règles de sécurité déterministes.
+</p>
+
+<h2>2. Les 7 Notions Essentielles (à savoir expliquer)</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Concept</th>
+      <th>Explication simple en français</th>
+      <th style="width: 30%;">Rôle dans le projet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Réacteur & Réaction</strong></td>
+      <td>Composant logiciel autonome qui reçoit des messages sur des ports, possède son état interne et exécute du code (réaction) sur événement.</td>
+      <td>5 réacteurs : <code>Driver</code>, <code>Car</code>, <code>RoadEnvironment</code>, <code>Coach</code>, <code>Recorder</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Temps Logique</strong></td>
+      <td>Horloge mathématique exacte et déterministe. Deux événements prévus à $t = 100\text{ ms}$ ont exactement le même tag, sans retard ni avance.</td>
+      <td>Permet des simulations 100% reproductibles, indépendamment de la puissance du processeur.</td>
+    </tr>
+    <tr>
+      <td><strong>Temps Réel (Wall-clock)</strong></td>
+      <td>L'horloge physique du monde réel (secondes de notre montre et du processeur).</td>
+      <td>Sert à mesurer la véritable durée d'exécution du LLM ou d'un calcul.</td>
+    </tr>
+    <tr>
+      <td><strong>Latence (Latency)</strong></td>
+      <td>Temps réel que met le LLM pour générer sa réponse (ex: 350 ms).</td>
+      <td>Si elle dépasse la deadline, la réponse est dite périmée (late).</td>
+    </tr>
+    <tr>
+      <td><strong>Échéance (Deadline)</strong></td>
+      <td>Date limite temporelle stricte au-delà de laquelle une décision devient inutile ou dangereuse.</td>
+      <td>Fixée à 300 ms en local / poste de travail et 1700 ms sur supercalculateur Sol.</td>
+    </tr>
+    <tr>
+      <td><strong>Lag & Slack</strong></td>
+      <td>
+        <strong>Lag :</strong> Retard du système réel sur le temps logique.<br>
+        <strong>Slack :</strong> Marge restante avant l'échéance ($T_{\text{deadline}} - T_{\text{réel}}$).
+      </td>
+      <td>Si slack &lt; 0, on a raté la deadline. Si lag est grand, le monde physique a pris du retard.</td>
+    </tr>
+    <tr>
+      <td><strong>Secours (Fallback)</strong></td>
+      <td>Mécanisme réflexe codé en dur (règles physiques) qui s'exécute automatiquement en cas de panne ou retard du LLM.</td>
+      <td>Garantit que le véhicule freine à temps même si le LLM plante ou est trop lent.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>3. Ce que nous avons fait concrètement, de A à Z</h2>
+
+<h3>Partie 0 — Vérification de l'environnement</h3>
+<ul>
+  <li><strong>Objectif :</strong> S'assurer que le runtime Python, Xronos et les outils sont conformes.</li>
+  <li><strong>Ce que nous avons exécuté :</strong> `python scripts/check_environment.py` et `coach doctor`.</li>
+  <li><strong>Résultat :</strong> Génération du fichier officiel <code>results/environment.txt</code>. L'environnement Linux (WSL2 Ubuntu 24.04, Python 3.12.3, Xronos 0.13.1, Matplotlib 3.11.2) a validé tous les tests de conformité.</li>
+</ul>
+
+<h3>Partie 1 — Timing Xronos et gestion des délais (Exemples 01 à 05)</h3>
+<ul>
+  <li><strong>Exemple 01 & 02 :</strong> Validation du démarrage des réacteurs et des ports périodiques (100 ms). Nous avons prouvé que les timestamps affichés sont logiques car ils progressent sans aucune milliseconde de gigue.</li>
+  <li><strong>Exemple 03 (Délai logique) :</strong>
+    <ul>
+      <li>Le délai de 500 ms est configuré à la ligne 65 (`env.connect(..., delay=timedelta(milliseconds=500))`).</li>
+      <li><strong>Test de prédiction :</strong> Nous avons modifié ce délai à 300 ms. Nous avions prédit que les réceptions décaleraient exactement à $t = 300, 550, 800, 1050, 1300\text{ ms}$. L'exécution a validé notre prédiction à 100%, prouvant que Xronos calcule les délais par arithmétique de tags dans sa file d'attente.</li>
+    </ul>
+  </li>
+  <li><strong>Exemple 04 (Lag & Slack) :</strong> Quand un composant prend 80 ms pour une échéance de 50 ms, son slack devient négatif (-31.5 ms) et le lag grimpe à 31.6 ms. Dès le tick suivant, le système récupère instantanément un lag quasi-nul (0.38 ms).</li>
+  <li><strong>Exemple 05 (Fallback rétroactif vs Course d'événements) :</strong>
+    <ul>
+      <li><strong>Phase A (Anti-pattern) :</strong> L'appel modèle est synchrone et bloquant (1.2 s). Le moniteur subit un lag énorme de 1 101 ms et le fallback se déclenche avec <strong>800 ms de retard</strong> sur la deadline. Il ne protège rien.</li>
+      <li><strong>Phase B (Pattern du projet) :</strong> Le handler lance la requête et rend immédiatement la main. Le runtime fait la course entre deux timers programmables (`on_response` et `on_deadline`). Le fallback se déclenche <strong>exactement à temps</strong> à $t = 600\text{ ms}$ (lag de 0.5 ms), et la réponse tardive arrivée à 1400 ms est proprement jetée.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Partie 2 — Simulations déterministes de référence</h3>
+<ul>
+  <li><strong>Simulations lancées :</strong> `results/rule-a`, `results/rule-b` et `results/replay`.</li>
+  <li><strong>Preuve de déterminisme :</strong> La comparaison champ par champ de <code>results/rule-a/summary.json</code> et <code>results/rule-b/summary.json</code> montre une égalité stricte sur toutes les métriques physiques et logiques (vitesse, arrêts, actionnements). Seuls `run_id` (généré aléatoirement) et `xronos_lag` (mesure matérielle) changent.</li>
+  <li><strong>Résultat d'arrêt :</strong> Le véhicule s'arrête parfaitement 4.522 m avant le panneau (`stop_position_error_m = -4.522 m`, `v = 0.0 m/s`).</li>
+  <li><strong>Séquence d'armement du freinage d'urgence :</strong>
+    <ol>
+      <li>$t = 6700\text{ ms}$ : Le coach émet son 1er jeton <code>ACTUATE</code>. Le Planner s'arme et émet un avertissement vocal ("Brake now").</li>
+      <li>$t = 6800\text{ ms}$ : Au tick suivant (100 ms plus tard), recevant à nouveau <code>ACTUATE</code>, le Planner armé déclenche l'actionneur physique `EMERGENCY_BRAKING`.</li>
+      <li>$t = 7000\text{ ms}$ : Après les 200 ms de délai de transmission vers la voiture, le freinage d'urgence est appliqué à la physique du véhicule.</li>
+    </ol>
+  </li>
+  <li><strong>Modification du réacteur Planner :</strong> Nous avons ajouté une instruction verbale lors de la désescalade (`[VERBAL] NONE | Back within the safe band.`). Prédiction confirmée : exactement 1 ligne ajoutée à $t = 4600\text{ ms}$, sans aucun changement sur le comportement physique du véhicule (le conducteur rejouant une trace prédéfinie).</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h3>Partie 3 — Évaluation des modèles LLM (Llama 3.2 1B vs 3B)</h3>
+<p>
+  Nous avons analysé le comportement sous une échéance stricte de 300 ms à l'aide des traces certifiées du cours (exécutées via `results/replay-1b-300` et `results/replay-3b-300`).
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Modèle</th>
+      <th>Latence Médiane</th>
+      <th>Taux Raté Deadline</th>
+      <th>Réponses Malformées</th>
+      <th>Faux Négatifs Dangereux</th>
+      <th>Résultat d'arrêt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Llama-3.2 1B</strong></td>
+      <td>349.8 ms</td>
+      <td>85.7 %</td>
+      <td>0</td>
+      <td><strong>1 (DANGEREUX)</strong></td>
+      <td>Arrêt dépassé (+20.1 m)</td>
+    </tr>
+    <tr>
+      <td><strong>Llama-3.2 3B</strong></td>
+      <td>362.8 ms</td>
+      <td>95.2 %</td>
+      <td>1</td>
+      <td><strong>0 (SÛR)</strong></td>
+      <td>Arrêt dépassé (+20.0 m)</td>
+    </tr>
+  </tbody>
+</table>
+<div class="callout callout-warning">
+  <div class="callout-title">Le compromis Latence vs Qualité mis en évidence :</div>
+  Le petit modèle (1B) répond un peu plus vite, mais commet une faute grave : il oublie de demander le freinage alors que l'oracle de sécurité l'imposait (1 faux négatif non sécurisé). Le modèle 3B comprend mieux les règles de sécurité (0 faux négatif), mais sa latence dépasse l'échéance de 300 ms dans 95% des cas, forçant le système à utiliser le fallback.
+</div>
+
+<h3>Partie 4 — Comparaison des profils conducteur (Débutant vs Avancé)</h3>
+<ul>
+  <li><strong>Commande exécutée :</strong> `coach compare-behaviors --drivers beginner advanced --repetitions 3`.</li>
+  <li><strong>Résultats clés :</strong>
+    <ul>
+      <li>Le conducteur <strong>débutant</strong> ne freine pas de lui-même : il passe <strong>3.1 secondes en infraction</strong> de vitesse et nécessite <strong>11 freinages d'urgence</strong> du coach pour s'arrêter à 4.52 m du stop.</li>
+      <li>Le conducteur <strong>avancé</strong> ralentit de manière autonome : il ne passe que <strong>2.4 secondes en infraction</strong> et ne nécessite que <strong>8 freinages d'urgence</strong>, s'arrêtant avec une marge confortable de <strong>13.08 mètres</strong> avant le stop.</li>
+    </ul>
+  </li>
+  <li><strong>Artéfact produit :</strong> Graphique comparatif officiel <code>results/behavior-comparison/comparison.png</code>.</li>
+</ul>
+
+<h3>Partie 5 — Extension Graduate CSE 598 (Option B : Traces générées)</h3>
+<ul>
+  <li><strong>Notre contribution :</strong> Développement du script <code>scripts/generate_driver_trace.py</code> qui produit des profils conducteurs stochastiques et réalistes en contrôlant la graine du générateur (`random.Random(seed)`).</li>
+  <li><strong>Expérience :</strong> Génération de 3 profils avec les graines 42, 101 et 2024, puis évaluation contre le coach de règles déterministe.</li>
+  <li><strong>Conclusion de l'extension :</strong> Même face à des conducteurs aux comportements très irréguliers (début de freinage retardé, hésitations), la politique réflexe du coach a garanti un arrêt sans collision dans 100% des cas (arrêt entre 1.33 m et 2.53 m du stop), au prix d'un nombre accru d'interventions d'urgence (12 à 13).</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>4. Fiche « Questions Pièges » du Professeur</h2>
+<p>Voici les questions typiques qu'un enseignant pose lors de la soutenance, et exactement ce que vous devez lui répondre :</p>
+
+<div class="qa-box">
+  <div class="qa-q">Q1 : « Pourquoi avez-vous besoin de Xronos ? Pourquoi ne pas simplement faire un script Python avec des threads et des sleep() ? »</div>
+  <div class="qa-a"><strong>Réponse :</strong> Parce que les threads et <code>time.sleep()</code> en Python dépendent de l'OS et du GIL, ce qui introduit de la gigue (jitter) non déterministe. Deux exécutions donneraient des trajectoires physiques différentes. Xronos utilise la sémantique des réacteurs avec un <strong>temps logique déterministe</strong> : l'exécution est reproductible au microseconde près, tout en permettant d'exécuter des simulations accélérées (<code>--fast</code>) sans perdre la validité des modèles physiques.</div>
+</div>
+
+<div class="qa-box">
+  <div class="qa-q">Q2 : « Dans l'exemple 05, quelle est la différence structurelle clé entre la Phase A et la Phase B ? »</div>
+  <div class="qa-a"><strong>Réponse :</strong> Dans la Phase A, le handler attend la réponse du modèle de manière synchrone et bloquante. C'est un <em>anti-pattern</em> : le runtime est paralysé et ne peut pas faire respecter l'échéance. Dans la Phase B, la requête est asynchrone et le runtime gère une <strong>course d'événements</strong> entre deux timers : la réponse et l'échéance. Si l'échéance arrive en premier, le fallback tire instantanément.</div>
+</div>
+
+<div class="qa-box">
+  <div class="qa-q">Q3 : « Pourquoi observe-t-on un délai de 300 ms entre la première décision d'actionner et le moment où la voiture commence à freiner ? »</div>
+  <div class="qa-a"><strong>Réponse :</strong> Ce délai se décompose en deux mécanismes distincts :
+    <ol>
+      <li><strong>100 ms d'armement du Planner :</strong> Le premier jeton <code>ACTUATE</code> (à 6700 ms) passe le Planner en mode armé et émet une alerte verbale, mais ne freine pas encore. Il faut un 2e jeton consécutif (à 6800 ms) pour déclencher l'action physique.</li>
+      <li><strong>200 ms de délai de transmission logique :</strong> La connexion entre le coach et la voiture (<code>coach.actuate -> car.actuate_in</code>) a un délai logique déclaré de 200 ms. L'action émise à 6800 ms s'applique donc à la physique de la voiture exactement à 7000 ms.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="qa-box">
+  <div class="qa-q">Q4 : « Quel modèle préférez-vous entre Llama-3.2:1B et 3B pour ce système critique ? »</div>
+  <div class="qa-a"><strong>Réponse :</strong> Aucun des deux ne peut être utilisé seul sans garde-fous. Le modèle 1B est dangereux car il génère des faux négatifs (il omet d'avertir du danger). Le modèle 3B est plus fiable sur le plan sémantique mais trop lent sur machine standard, ce qui entraîne des dépassements de deadline. Cela démontre scientifiquement qu'un système cyber-physique autonome ne peut pas dépendre uniquement d'un LLM et doit impérativement être doublé d'un fallback réflexe déterministe.</div>
+</div>
+
+<div class="qa-box">
+  <div class="qa-q">Q5 : « Qu'avez-vous rendu dans votre archive finale ? »</div>
+  <div class="qa-a"><strong>Réponse :</strong> L'archive officielle <code>submission/group01_agentic-driving-coach.zip</code> (144 fichiers) générée par le script du projet <code>make_submission.py</code>. Elle contient notre fichier de réponses complet <code>answers.md</code>, l'intégralité du code source, nos scripts d'extension (Option B), et les dossiers complets de résultats (CSV, JSON de métriques et graphiques PNG). Elle exclut rigoureusement tout cache et environnement virtuel.</div>
+</div>
+
+<h2>5. Inventaire des Fichiers Prêts sur votre Machine</h2>
+<ul>
+  <li><code>submission/answers.md</code> : Toutes vos réponses officielles rédigées en anglais technique.</li>
+  <li><code>results/environment.txt</code> : Preuve de validation de l'environnement d'exécution.</li>
+  <li><code>RAPPORT_EXECUTION.md</code> : Journal complet des commandes et des tests effectués.</li>
+  <li><code>submission/group01_agentic-driving-coach.zip</code> : <strong>L'archive finale à déposer sur Canvas.</strong></li>
+  <li><code>GUIDE_ETUDIANT_PRESENTATION.pdf</code> : Ce document prêt à imprimer pour réviser avant votre présentation.</li>
+</ul>
+
+</body>
+</html>

@@ -43,3 +43,5 @@ slurm-*.err
 .vscode/
 .idea/
 .DS_Store
+
+.venv-linux/
